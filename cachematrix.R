@@ -59,10 +59,6 @@ cacheSolve <- function(x, ...) {
 }
 
 
-
-
-
-
 phil <- makeCacheMatrix(matrix(1:4, 2, 2))
 phil$get()
 cacheSolve(phil)
