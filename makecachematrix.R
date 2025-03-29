@@ -2,6 +2,8 @@
 ## functions do
 
 ## Write a short comment describing this function
+## `<<-` is a global assignment operator, meaning that the variable can be assigned in a function yet has a scope in the parent environment. 
+## This function returns a list of other functions and inverts a matrix.
 
 makeCacheMatrix <- function(x = matrix()) {
         m <- NULL
@@ -21,7 +23,8 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
-
+## This function looks to see if an inverse matrix has already been completed as a result of the `MakeCacheMatrix()`.
+## If so, the inverts matrix is returned; if not, this function computes the matrix and stores it in the cache.
 
 cacheSolve <- function(x, ...) {
         m <- x$getInverse()
