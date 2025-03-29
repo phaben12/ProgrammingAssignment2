@@ -2,7 +2,7 @@
 ## functions do
 
 ## to use (if working directory is not set 
-## source("C:\\Users\\e840921\\Documents\\coursera\\R-Programming\\ProgrammingAssignment2\\cachematrix.r")
+## source("C:\\Users\\Philip\\Documents\\coursera\\R-Programming\\ProgrammingAssignment2\\cachematrix.r")
 ## to use (if working directory is set) 
 ## source("cachematrix.r")
 
@@ -16,20 +16,27 @@
 ## This function returns a list of other functions and inverts a matrix.
 
 makeCacheMatrix <- function(x = matrix()) {
-        m <- NULL
-        set <- function(y) {
-                x <<- y
-                m <<- NULL
-        }
-        get <- function() x
-        setInverse <- function(inverse) m <<- inverse
-        getInverse<- function() m
-        list(set = set, get = get,
-             setInverse = setInverse,
-             getInverse = getInverse)
-        }
-
-
+  ## x is a square invertible matrix
+  ## Return set/get the special matrix obj with the input matrix 
+  ## and its inverse
+  
+  ## check if x is invertible 
+  ##result <- try(determinant(x)$modulus)
+  inv = NULL
+  if (class(try(solve(x), silent = T)) != "try-error"){
+    #print("i'm here!")
+    set = function(y){
+      x <<-y
+      inv <<- NULL
+    }
+    get = function() x
+    setinv = function(inverse) inv <<- inverse 
+    getinv = function() inv
+    list(set=set, get=get, setinv=setinv, getinv=getinv)
+  }else{
+    print("x not an invertible matrix")
+  }
+}
 
 
 ## Write a short comment describing this function
@@ -37,16 +44,23 @@ makeCacheMatrix <- function(x = matrix()) {
 ## If so, the inverts matrix is returned; if not, this function computes the matrix and stores it in the cache.
 
 cacheSolve <- function(x, ...) {
-        m <- x$getInverse()
-        if(!is.null(m)) {
-                message("getting cached data")
-                return(m)
-        }
-        data <- x$get()
-        m <- solve(data, ...)
-        x$setInverse(m)
-        m
-        }
+  ## Return a matrix that is the inverse of 'x'
+  inv = x$getinv()
+  #get x's invert from cache
+  if (!is.null(inv)){
+    message("getting cached data")
+    return(inv)
+  }else{# calculate x's invert
+    mat = x$get()
+    inv = solve(mat, ...)
+    x$setinv(inv)
+    return(inv)
+  }
+}
+
+
+
+
 
 
 phil <- makeCacheMatrix(matrix(1:4, 2, 2))
