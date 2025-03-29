@@ -1,6 +1,16 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
+## to use (if working directory is not set 
+## source("C:\\Users\\e840921\\Documents\\coursera\\R-Programming\\ProgrammingAssignment2\\cachematrix.r")
+## to use (if working directory is set) 
+## source("cachematrix.r")
+
+## create a 2x2 matrix with set values
+## qq <- matrix((1:4),nrow=2, ncol=2)  ## unsolvable matrix
+## qq <- matrix(rnorm(4),nrow=2, ncol=2) ## solvable matrix creation
+
+
 ## Write a short comment describing this function
 ## `<<-` is a global assignment operator, meaning that the variable can be assigned in a function yet has a scope in the parent environment. 
 ## This function returns a list of other functions and inverts a matrix.
